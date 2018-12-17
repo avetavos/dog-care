@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 
 const users = require("./routes/users");
+const dogs = require("./routes/dogs");
 
 const app = express();
 const port = 5000;
@@ -29,6 +30,7 @@ mongoose
 
 // Routes
 app.use("/api/users", users);
+app.use("/api/dogs", dogs);
 
 app.listen(port, () =>
   console.log(
