@@ -33,39 +33,46 @@ export class Navbar extends Component {
 
     const authNavbar = (
       <React.Fragment>
-        <nav>
-          <div className="nav-wrapper pink">
-            <div className="container">
-              <Link to="/dogs" className="brand-logo white-text">
-                Dog Care
-              </Link>
-              <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li>
-                  <Link to={`/profile/${user.id}`} className="white-text">
-                    {user.fullname}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/dogs" className="white-text">
-                    สุนัขของคุณ
-                  </Link>
-                </li>
-                <li>
-                  <a href="#" className="red-text" onClick={this.onLogoutClick}>
-                    ออกจากระบบ
-                  </a>
-                </li>
-              </ul>
-              <a
-                href="#"
-                data-target="slide-out"
-                className="sidenav-trigger white-text"
-                style={{ margin: 0 }}>
-                <i className="material-icons">menu</i>
-              </a>
+        <div class="navbar-fixed">
+          <nav>
+            <div className="nav-wrapper">
+              <div className="container">
+                <Link to="/dogs" className="brand-logo white-text">
+                  Dog Care
+                </Link>
+                <ul id="nav-mobile" className="right hide-on-med-and-down">
+                  <li>
+                    <Link to={`/profile/${user.id}`} className="white-text">
+                      <i className="material-icons left">person</i>{" "}
+                      {user.fullname}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/dogs" className="white-text">
+                      <i className="material-icons left">pets</i> สุนัขของคุณ
+                    </Link>
+                  </li>
+                  <li className="pink darken-2">
+                    <a
+                      href="#"
+                      className="white-text"
+                      onClick={this.onLogoutClick}>
+                      <i className="material-icons left">power_settings_new</i>
+                      ออกจากระบบ
+                    </a>
+                  </li>
+                </ul>
+                <a
+                  href="#"
+                  data-target="slide-out"
+                  className="sidenav-trigger white-text"
+                  style={{ margin: 0 }}>
+                  <i className="material-icons">menu</i>
+                </a>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+        </div>
         <div>
           <ul id="slide-out" className="sidenav">
             <li>
@@ -86,12 +93,12 @@ export class Navbar extends Component {
             </li>
             <li>
               <Link to={`/profile/${user.id}`} onClick={this.onHandleSideNav}>
-                {user.fullname}
+                <i className="material-icons left">person</i> {user.fullname}
               </Link>
             </li>
             <li>
               <Link to="/dogs" onClick={this.onHandleSideNav}>
-                สุนัขของคุณ
+                <i className="material-icons left">pets</i> สุนัขของคุณ
               </Link>
             </li>
             <li>
@@ -100,6 +107,9 @@ export class Navbar extends Component {
                 className="red-text"
                 onClick={this.onLogoutClick}
                 data-target="slide-out">
+                <i className="material-icons left red-text">
+                  power_settings_new
+                </i>{" "}
                 ออกจากระบบ
               </a>
             </li>
@@ -110,30 +120,38 @@ export class Navbar extends Component {
 
     const guestNavbar = (
       <React.Fragment>
-        <nav>
-          <div className="nav-wrapper white">
-            <div className="container">
-              <Link to="/" className="brand-logo pink-text">
-                Dog Care
-              </Link>
-              <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li>
-                  <Link to="/login">ลงชื่อเข้าใช้</Link>
-                </li>
-                <li>
-                  <Link to="/register">สมัครสมาชิก</Link>
-                </li>
-              </ul>
-              <a
-                href="#"
-                data-target="slide-out"
-                className="sidenav-trigger pink-text"
-                style={{ margin: 0 }}>
-                <i className="material-icons">menu</i>
-              </a>
+        <div className="navbar-fixed">
+          <nav>
+            <div className="nav-wrapper pink">
+              <div className="container">
+                <Link to="/" className="brand-logo white-text">
+                  Dog Care
+                </Link>
+                <ul id="nav-mobile" className="right hide-on-med-and-down">
+                  <li>
+                    <Link to="/login" className="white-text">
+                      <i className="material-icons left">exit_to_app</i>
+                      ลงชื่อเข้าใช้
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/register" className="white-text">
+                      <i className="material-icons left">person_add</i>{" "}
+                      สมัครสมาชิก
+                    </Link>
+                  </li>
+                </ul>
+                <a
+                  href="#"
+                  data-target="slide-out"
+                  className="sidenav-trigger white-text"
+                  style={{ margin: 0 }}>
+                  <i className="material-icons">menu</i>
+                </a>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+        </div>
         <div>
           <ul id="slide-out" className="sidenav">
             <li>
@@ -148,17 +166,17 @@ export class Navbar extends Component {
             </li>
             <li>
               <Link to="/" onClick={this.onHandleSideNav}>
-                หน้าหลัก
+                <i className="material-icons left">home</i> หน้าหลัก
               </Link>
             </li>
             <li>
               <Link to="/login" onClick={this.onHandleSideNav}>
-                ลงชื่อเข้าใช้
+                <i className="material-icons left">exit_to_app</i> ลงชื่อเข้าใช้
               </Link>
             </li>
             <li>
               <Link to="/register" onClick={this.onHandleSideNav}>
-                สมัครสมาชิก
+                <i className="material-icons left">person_add</i> สมัครสมาชิก
               </Link>
             </li>
           </ul>

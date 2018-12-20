@@ -29,8 +29,9 @@ export class VaccinTable extends Component {
           <td>
             <i
               className="material-icons red-text"
-              onClick={this.deleteVaccin.bind(this, dogId, vaccin._id)}>
-              delete
+              onClick={this.deleteVaccin.bind(this, dogId, vaccin._id)}
+              style={{ cursor: "pointer" }}>
+              delete_outline
             </i>
           </td>
         </tr>
