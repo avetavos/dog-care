@@ -19,10 +19,6 @@ const DogSchema = new Schema({
     type: Date,
     required: true
   },
-  age: {
-    type: Number,
-    required: true
-  },
   primarycolor: {
     type: String,
     required: true

@@ -7,7 +7,7 @@ const validateVaccinationInput = require("../validation/vaccination");
 
 const Dog = require("../models/Dog");
 
-// ? Route : POST api/dogs
+// ? Route : POST api/dogs/new
 // * Desc : Create your dogs bio
 // ! Access : Private
 router.post(
@@ -24,7 +24,6 @@ router.post(
       name,
       sex,
       dateofbirth,
-      age,
       primarycolor,
       secondarycolor,
       breed
@@ -35,7 +34,6 @@ router.post(
       name,
       sex,
       dateofbirth,
-      age,
       primarycolor,
       secondarycolor,
       breed
@@ -93,7 +91,6 @@ router.put(
       name,
       sex,
       dateofbirth,
-      age,
       primarycolor,
       secondarycolor,
       breed
@@ -105,7 +102,6 @@ router.put(
       dog.name = name;
       dog.sex = sex;
       dog.dateofbirth = dateofbirth;
-      dog.age = age;
       dog.primarycolor = primarycolor;
       dog.secondarycolor = secondarycolor;
       dog.breed = breed;
@@ -169,12 +165,6 @@ router.delete(
   "/:id/vaccination/:vaccinationId",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateVaccinationInput(req.body);
-
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
-
     Dog.findById(req.params.id, (err, dog) => {
       if (err) return res.status(500).json(err);
 

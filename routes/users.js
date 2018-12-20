@@ -3,10 +3,12 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
+const gravatar = require("gravatar");
 const passport = require("passport");
 
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
+const validateProfileInput = require("../validation/profile");
 
 const User = require("../models/User");
 
@@ -78,9 +80,10 @@ router.post("/login", (req, res) => {
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
         const payload = {
-          id: user._id,
-          name: user.name,
-          username: user.username
+          id: user.id,
+          fullname: user.fullname,
+          avatar: user.avatar,
+          email: user.email
         };
 
         jwt.sign(
@@ -102,17 +105,63 @@ router.post("/login", (req, res) => {
   });
 });
 
-// ? Route : GET api/users/current
-// * Desc : Get current user
+// ? Route : GET api/users/:id
+// * Desc : Get user profile by id
 // ! Access : Private
 router.get(
-  "/current",
+  "/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    res.json({
-      id: req.user._id,
-      fullname: req.user.fullname,
-      username: req.user.username
+    User.findById(req.params.id, (err, user) => {
+      if (err) return res.status(500).json(err);
+      return res.status(200).json(user);
+    });
+  }
+);
+
+// ? Route : PUT api/users/:id
+// * Desc : Update your profile by id
+// ! Access : Private
+router.put(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateProfileInput(req.body);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    const { fullname, email, phone, address } = req.body;
+
+    User.findById(req.params.id, (err, user) => {
+      if (err) return res.status(500).json(err);
+
+      user.fullname = fullname;
+      user.email = email;
+      user.phone = phone;
+      user.address = address;
+
+      user.save(err => {
+        if (err) return res.status(500).json(err);
+        return res.status(200).json(user);
+      });
+    });
+  }
+);
+
+// ? Route : DELETE api/users/:id
+// * Desc : Delete your account
+// ! Access : Private
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findByIdAndRemove(req.params.id, (err, User) => {
+      if (err) return res.status(500).json(err);
+      return res.status(200).json({
+        message: "Account successfully deleted"
+      });
     });
   }
 );

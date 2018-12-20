@@ -7,7 +7,6 @@ module.exports = function validateDogInput(data) {
   data.name = !isEmpty(data.name) ? data.name : "";
   data.sex = !isEmpty(data.sex) ? data.sex : "";
   data.dateofbirth = !isEmpty(data.dateofbirth) ? data.dateofbirth : "";
-  data.age = !isEmpty(data.age) ? data.age : "";
   data.primarycolor = !isEmpty(data.primarycolor) ? data.primarycolor : "";
   data.secondarycolor = !isEmpty(data.secondarycolor)
     ? data.secondarycolor
@@ -24,10 +23,6 @@ module.exports = function validateDogInput(data) {
 
   if (Validator.isEmpty(data.dateofbirth)) {
     errors.dateofbirth = "กรุณาระบุวันเดือนปีเกิดของสุนัข";
-  }
-
-  if (Validator.isEmpty(data.age)) {
-    errors.age = "กรุณาระบุอายุของสุนัข";
   }
 
   if (Validator.isEmpty(data.primarycolor)) {
