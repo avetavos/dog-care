@@ -35,7 +35,7 @@ export class Navbar extends Component {
       <React.Fragment>
         <div class="navbar-fixed">
           <nav>
-            <div className="nav-wrapper">
+            <div className="nav-wrapper pink">
               <div className="container">
                 <Link to="/dogs" className="brand-logo white-text">
                   Dog Care

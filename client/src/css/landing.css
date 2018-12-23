@@ -1,0 +1,22 @@
+.landing {
+  height: 100%;
+  background-image: url("../images/lading1.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: left;
+  background-size: cover;
+  top: -56px;
+}
+
+@media (min-width: 992px) {
+  .landing {
+    height: 100%;
+    background-image: url("../images/lading2.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    top: -64px;
+  }
+}
